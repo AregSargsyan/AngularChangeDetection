@@ -1,0 +1,5 @@
+{{runChangeDetection()}}
+
+<app-first *ngIf="open"></app-first>
+<app-a *ngIf="open"></app-a>
+<button (click)="open=!open">Trigger change detection</button>
