@@ -4,7 +4,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   selector: 'app-third',
   templateUrl: './third.component.html',
   styleUrls: ['./third.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
 export class ThirdComponent  {

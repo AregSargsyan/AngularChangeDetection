@@ -1,5 +1,7 @@
+<button (click)="open=!open">Open 2 branches</button>
+
+
 {{runChangeDetection()}}
 
 <app-first *ngIf="open"></app-first>
 <app-a *ngIf="open"></app-a>
-<button (click)="open=!open">Trigger change detection</button>

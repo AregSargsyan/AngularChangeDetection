@@ -7,25 +7,28 @@ import { Component, OnInit, NgZone, ViewChild, ElementRef, Renderer2, ChangeDete
 })
 export class SecondComponent {
 
-  constructor(private ngzone: NgZone, private renderer: Renderer2, public cd: ChangeDetectorRef) { }
-  // @ViewChild('div') div: ElementRef
-  // count = 6;
+  @ViewChild('div', { static: true }) div: ElementRef
 
-  // ngOnInit(): void {
-  //   // setInterval(_=> {
-  //   //   this.count+=10;
-  //   //   // this.cd.detectChanges()
-  //   // }
-  //   //   ,500)
-  //   this.ngzone.runOutsideAngular(_=>{
-  //     setInterval(_=> {
-  //       this.count+=10;
-  //       // this.cd.detectChanges()
-  //     }
-  //       ,500)
 
-  //   })
-  // }
+  constructor(private ngZone: NgZone, private renderer: Renderer2, public cd: ChangeDetectorRef) { }
+
+
+  ngOnInit(): void {
+
+    //  will not trigger change detection
+    // this.ngZone.runOutsideAngular(_ => this.changeColor())
+
+
+    // this.changeColor() // will trigger change detection each 50ms
+
+  }
+
+  private setRandomColor() {
+    return ['red', 'orange', 'yellow', 'green', 'blue', 'purple'][Math.random() * 6 | 0];
+  }
+  private changeColor() {
+    setInterval(_ => this.div.nativeElement.style.background = this.setRandomColor(), 50)
+  }
 
   runChangeDetection() {
     console.log('SecondComponent - Checking the view');
@@ -33,29 +36,5 @@ export class SecondComponent {
   second(){
 
   }
-
-  // randomColor(){
-  //   this.ngzone.runOutsideAngular(_ => setInterval(_=> this.this.coloring(),500))
-
-  // }
-
-  // ngAfterViewInit(): void {
-
-
-  //   this.ngzone.runOutsideAngular(_ => {
-
-  //     setInterval(_=> this.coloring(),500)
-  //   })
-
-
-      // setInterval(_ => this.coloring(), 500)
-  // }
-  // randomHsl() {
-  //   const color = 'hsla(' + (Math.random() * 360) + ', 100%, 50%, 1)';
-  //   return color;
-  // }
-  // coloring() {
-  //   this.renderer.setStyle(this.div.nativeElement, "color", this.randomHsl())
-  // }
 
 }
