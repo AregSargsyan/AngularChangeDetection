@@ -19,6 +19,7 @@ export class BComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // this will trigger change detection in all components, except "C"
     this.user = this.http.get('https://randomuser.me/api/').
       pipe(map((res: any) => res.results[0].picture.medium))
 
